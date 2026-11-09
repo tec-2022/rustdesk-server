@@ -1,5 +1,3 @@
-version: '3'
-
 networks:
   rustdesk-net:
     external: false
@@ -8,12 +6,12 @@ services:
   hbbs:
     container_name: hbbs
     ports:
-      - 21115:21115
-      - 21116:21116
-      - 21116:21116/udp
-      - 21118:21118
-    image: rustdesk/rustdesk-server:latest
-    command: hbbs -r rustdesk.example.com:21117
+      - "21115:21115"
+      - "21116:21116"
+      - "21116:21116/udp"
+      - "21118:21118"
+    image: ghcr.io/tec-2022/rustdesk-server:latest
+    command: hbbs -r ${RUSTDESK_HOST:?Define RUSTDESK_HOST en el archivo .env}:21117
     volumes:
       - ./data:/root
     networks:
@@ -25,9 +23,9 @@ services:
   hbbr:
     container_name: hbbr
     ports:
-      - 21117:21117
-      - 21119:21119
-    image: rustdesk/rustdesk-server:latest
+      - "21117:21117"
+      - "21119:21119"
+    image: ghcr.io/tec-2022/rustdesk-server:latest
     command: hbbr
     volumes:
       - ./data:/root

@@ -1,5 +1,9 @@
 # RustDesk Server Program
 
+> Nuestra operacion y despliegue estan documentados en
+> [NUESTRO-SERVIDOR.md](NUESTRO-SERVIDOR.md). La imagen del VPS se compila desde
+> este repositorio y se publica en `ghcr.io/tec-2022/rustdesk-server`.
+
 [![build](https://github.com/rustdesk/rustdesk-server/actions/workflows/build.yaml/badge.svg)](https://github.com/rustdesk/rustdesk-server/actions/workflows/build.yaml)
 
 [**Download**](https://github.com/rustdesk/rustdesk-server/releases)

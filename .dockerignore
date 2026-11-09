@@ -1,0 +1,10 @@
+.git
+.github
+data
+target
+debian-build
+ui
+docs
+tests
+*.sqlite3
+id_*
