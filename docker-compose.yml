@@ -2,15 +2,21 @@ networks:
   rustdesk-net:
     external: false
 
+x-rustdesk-image: &rustdesk-image
+  image: rustdesk-server-local:latest
+  build:
+    context: .
+    dockerfile: docker-owned/Dockerfile
+
 services:
   hbbs:
+    <<: *rustdesk-image
     container_name: hbbs
     ports:
       - "21115:21115"
       - "21116:21116"
       - "21116:21116/udp"
       - "21118:21118"
-    image: ghcr.io/tec-2022/rustdesk-server:latest
     command: hbbs -r ${RUSTDESK_HOST:?Define RUSTDESK_HOST en el archivo .env}:21117
     volumes:
       - ./data:/root
@@ -21,11 +27,11 @@ services:
     restart: unless-stopped
 
   hbbr:
+    <<: *rustdesk-image
     container_name: hbbr
     ports:
       - "21117:21117"
       - "21119:21119"
-    image: ghcr.io/tec-2022/rustdesk-server:latest
     command: hbbr
     volumes:
       - ./data:/root

@@ -1,9 +1,10 @@
 # Servidor RustDesk propio
 
 Este repositorio es nuestra copia mantenible del servidor libre de RustDesk. El
-VPS ejecuta una imagen compilada por GitHub Actions directamente desde este
-codigo y publicada en `ghcr.io/tec-2022/rustdesk-server`; no descarga la imagen
-de RustDesk ni usa scripts de instalacion de terceros.
+VPS compila su imagen directamente desde este codigo; no descarga la imagen de
+RustDesk, no requiere acceso a un registro privado y no usa scripts de
+instalacion de terceros. GitHub Actions compila y publica la misma imagen como
+verificacion independiente de cada cambio.
 
 ## Preparar el VPS
 
@@ -13,7 +14,7 @@ Requisitos: Linux `amd64`, Docker Engine y el complemento Docker Compose.
 git clone https://github.com/tec-2022/rustdesk-server.git
 cd rustdesk-server
 nano .env
-docker compose pull
+docker compose build
 docker compose up -d
 docker compose ps
 ```
@@ -49,7 +50,7 @@ En cada cliente RustDesk configura:
 
 ```bash
 git pull --ff-only
-docker compose pull
+docker compose build
 docker compose up -d
 ```
 

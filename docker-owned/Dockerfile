@@ -15,6 +15,7 @@ RUN apt-get update \
 
 COPY --from=builder /src/target/release/hbbs /usr/local/bin/hbbs
 COPY --from=builder /src/target/release/hbbr /usr/local/bin/hbbr
+RUN hbbs --help >/dev/null && hbbr --help >/dev/null
 
 WORKDIR /root
 ENV HOME=/root
