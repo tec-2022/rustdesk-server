@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Administración — LVL Remote</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/">
+        <span class="brand-mark">LVL</span>
+        <span class="brand-copy"><strong>Remote</strong><small>Centro de control</small></span>
+      </a>
+      <nav class="side-nav" aria-label="Secciones">
+        <a class="nav-item active" href="#usuarios" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Usuarios
+        </a>
+      </nav>
+      <div class="side-bottom">
+        <i class="status-dot" aria-hidden="true"></i>
+        <span class="user-cell">Sistema en línea</span>
+        <button class="icon-button" id="logout" type="button" aria-label="Cerrar sesión">↗</button>
+      </div>
+    </aside>
+
+    <main class="admin-main" id="usuarios">
+      <header class="admin-header">
+        <div>
+          <p class="eyebrow">Centro de control</p>
+          <h1>Usuarios</h1>
+          <p id="welcome-copy">Cargando tu infraestructura…</p>
+        </div>
+        <button class="button" id="open-create" type="button">+ Nuevo usuario</button>
+      </header>
+
+      <section class="metric-grid" aria-label="Resumen">
+        <article class="metric accent"><span>Usuarios totales</span><strong id="metric-total">—</strong></article>
+        <article class="metric"><span>Cuentas activas</span><strong id="metric-active">—</strong></article>
+        <article class="metric"><span>Sesiones vigentes</span><strong id="metric-sessions">—</strong></article>
+        <article class="metric"><span>Libretas guardadas</span><strong id="metric-books">—</strong></article>
+      </section>
+
+      <section class="content-card">
+        <div class="card-toolbar">
+          <div><p class="eyebrow">Directorio</p><h2>Cuentas de acceso</h2></div>
+          <input class="search" id="search" type="search" placeholder="Buscar usuario…" aria-label="Buscar usuario">
+        </div>
+        <div class="user-list" id="user-list" aria-live="polite">
+          <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal hidden" id="user-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <form class="modal-card" id="user-form">
+      <div class="modal-head"><div><p class="eyebrow">Nueva cuenta</p><h2 id="modal-title">Crear usuario</h2></div><button class="icon-button close-modal" type="button" aria-label="Cerrar">×</button></div>
+      <div class="field"><label for="new-username">Usuario</label><input id="new-username" name="username" minlength="3" maxlength="32" pattern="[A-Za-z0-9._-]+" required></div>
+      <div class="field"><label for="display-name">Nombre visible</label><input id="display-name" name="display_name" maxlength="80" required></div>
+      <div class="field"><label for="new-password">Contraseña inicial</label><input id="new-password" name="password" type="password" minlength="8" autocomplete="new-password" required></div>
+      <label class="user-cell"><input name="is_admin" type="checkbox"> Dar permisos administrativos</label>
+      <p class="form-message" id="user-form-message" role="alert"></p>
+      <div class="modal-actions"><button class="button secondary close-modal" type="button">Cancelar</button><button class="button" type="submit">Crear cuenta</button></div>
+    </form>
+  </div>
+
+  <div class="modal hidden" id="password-modal" role="dialog" aria-modal="true" aria-labelledby="password-title">
+    <form class="modal-card" id="password-form">
+      <div class="modal-head"><div><p class="eyebrow">Seguridad</p><h2 id="password-title">Cambiar contraseña</h2></div><button class="icon-button close-password" type="button" aria-label="Cerrar">×</button></div>
+      <input name="user_id" type="hidden">
+      <p class="user-cell" id="password-user"></p>
+      <div class="field"><label for="reset-password">Nueva contraseña</label><input id="reset-password" name="password" type="password" minlength="8" autocomplete="new-password" required></div>
+      <p class="form-message" id="password-message" role="alert"></p>
+      <div class="modal-actions"><button class="button secondary close-password" type="button">Cancelar</button><button class="button" type="submit">Actualizar</button></div>
+    </form>
+  </div>
+
+  <div class="toast hidden" id="toast" role="status"></div>
+  <script src="/assets/admin.js" defer></script>
+</body>
+</html>

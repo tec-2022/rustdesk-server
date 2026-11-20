@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ingresar — LVL Remote</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <main class="login-shell">
+    <section class="login-story" aria-label="LVL Remote">
+      <a class="brand" href="/">
+        <span class="brand-mark">LVL</span>
+        <span class="brand-copy"><strong>Remote</strong><small>Infraestructura propia</small></span>
+      </a>
+      <h1>El control empieza por ser dueño del acceso.</h1>
+      <p>Consola privada para operar usuarios, sesiones y libretas de tu red RustDesk.</p>
+    </section>
+
+    <section class="login-panel">
+      <div class="login-box">
+        <a class="login-back" href="/"><span aria-hidden="true">←</span> Volver al inicio</a>
+        <p class="eyebrow">Acceso administrativo</p>
+        <h2>Bienvenido.</h2>
+        <p>Ingresa con tu cuenta de administrador para abrir el centro de control.</p>
+        <form id="login-form" novalidate>
+          <div class="field">
+            <label for="username">Usuario</label>
+            <input id="username" name="username" autocomplete="username" required autofocus>
+          </div>
+          <div class="field">
+            <label for="password">Contraseña</label>
+            <div class="field-wrap">
+              <input id="password" name="password" type="password" autocomplete="current-password" required>
+              <button class="icon-button" id="show-password" type="button" aria-label="Mostrar contraseña">◉</button>
+            </div>
+          </div>
+          <button class="button login-submit" type="submit">Ingresar <span aria-hidden="true">→</span></button>
+          <p class="form-message" id="login-message" role="alert"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <script src="/assets/login.js" defer></script>
+</body>
+</html>

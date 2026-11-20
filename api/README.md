@@ -3,6 +3,13 @@
 Primera implementación compatible con las funciones de cuenta y libreta personal
 del cliente oficial de RustDesk.
 
+Incluye una consola web responsive para crear usuarios, suspender cuentas,
+cambiar contraseñas y revisar métricas básicas.
+
+- Bienvenida: `https://api.lvltechmx.com/`
+- Acceso: `https://api.lvltechmx.com/login`
+- Administración: `https://api.lvltechmx.com/admin`
+
 ## Endpoints
 
 - `GET /health`
@@ -13,6 +20,7 @@ del cliente oficial de RustDesk.
 - `GET /api/ab`
 - `POST /api/ab`
 - `POST /api/ab/personal` responde `404` para activar el modo de libreta legacy
+- `/admin/api/*` requiere una cuenta con permisos administrativos
 
 ## Ejecución
 
