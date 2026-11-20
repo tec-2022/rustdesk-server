@@ -46,6 +46,43 @@ En cada cliente RustDesk configura:
 - Servidor relay: el valor de `RUSTDESK_HOST`
 - Clave: el contenido de `data/id_ed25519.pub`
 
+## API propia
+
+La API libre de este repositorio vive en [`api/`](api/). Implementa el inicio
+de sesion, usuario actual, cierre de sesion y libreta personal que consume el
+cliente oficial. Usa SQLite y no requiere RustDesk Server Pro.
+
+La instalacion actual esta distribuida de esta forma:
+
+- `hbbs` y `hbbr`: VPS publico `82.39.109.204`.
+- API y SQLite: HP Ubuntu, `/opt/rustdesk-api`.
+- Entrada HTTPS: `https://api.lvltechmx.com`.
+- Nginx en el VPS reenvia la API al HP por la red privada Tailscale.
+
+En los clientes usa:
+
+- Servidor ID: `82.39.109.204`
+- Servidor relay: `82.39.109.204`
+- Servidor API: `https://api.lvltechmx.com`
+- Clave: `4th+RrM3QiQ2ZNeExJymammweUZzi71QKfwV+orUKVg=`
+
+El usuario inicial es `admin`. Su contrasena se genera aleatoriamente durante
+el despliegue y queda protegida en `/opt/rustdesk-api/.env` del HP. No debe
+guardarse en Git.
+
+Comandos de operacion desde este equipo:
+
+```bash
+ssh ubuntu-hp
+cd /opt/rustdesk-api
+docker compose -f compose.yml ps
+docker compose -f compose.yml logs --tail 100 api
+docker compose -f compose.yml up -d --build
+```
+
+La base persistente esta en `/opt/rustdesk-api/data/api.sqlite3`. Incluyela en
+los respaldos junto con las claves del servidor RustDesk.
+
 ## Actualizar
 
 ```bash

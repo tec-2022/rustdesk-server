@@ -1,0 +1,14 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rustdesk-owned-api:local
+    container_name: rustdesk-owned-api
+    env_file:
+      - .env
+    ports:
+      - "21114:21114"
+    volumes:
+      - ./data:/data
+    restart: unless-stopped
